@@ -7,6 +7,9 @@
  */
 package com.herui.health.biz.manager;
 
+import com.herui.health.biz.domain.request.BatchGenerateCardRequest;
+import com.herui.health.biz.domain.Result;
+
 /**
  * TODO
  *
@@ -16,5 +19,10 @@ package com.herui.health.biz.manager;
  */
 public interface CardManager {
 
-    Void add();
+    /**
+     * 批量生成卡号
+     * @param request
+     * @return
+     */
+    Result<Boolean> batchGenerateCard(BatchGenerateCardRequest request);
 }

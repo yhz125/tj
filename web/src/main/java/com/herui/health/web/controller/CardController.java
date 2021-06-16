@@ -7,37 +7,40 @@
  */
 package com.herui.health.web.controller;
 
+import com.herui.health.biz.domain.Result;
 import com.herui.health.biz.domain.request.BatchGenerateCardRequest;
 import com.herui.health.biz.manager.CardManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * TODO
  *
  * @author weiyi
  * @version V1.0
- * @since 2021-06-16 13:05
+ * @since 2021-06-16 20:39
  */
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/card")
+public class CardController {
 
     @Autowired
     private CardManager cardManager;
 
-    @RequestMapping("/init")
-    public String login(Model model){
-        BatchGenerateCardRequest request = new BatchGenerateCardRequest();
-        request.setPrefix(65102102L);
-        request.setStartNo("0000");
-        request.setCardNum(100);
-        cardManager.batchGenerateCard(request);
-        model.addAttribute("time",System.currentTimeMillis());
-        return "login";
-
+    /**
+     * 批量生成卡号
+     * @param request
+     * @return
+     */
+    @PostMapping("/batchGenerateCard")
+    @ResponseBody
+    public Result<Boolean> batchGenerateCard(@RequestBody  BatchGenerateCardRequest request){
+        return cardManager.batchGenerateCard(request);
     }
 }

@@ -10,4 +10,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface CardDAO extends MyBatisBaseDao<CardDO, Long> {
+
+    CardDO selectByCard(Long cardNo);
+
 }

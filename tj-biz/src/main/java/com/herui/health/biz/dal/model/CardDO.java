@@ -33,7 +33,7 @@ public class CardDO implements Serializable {
     /**
      * 卡状态(0:未绑套餐,1:已绑套餐,2:作废)
      */
-    private Byte cardStatus;
+    private Integer cardStatus;
 
     /**
      * 创建时间
