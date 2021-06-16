@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.herui.health.biz.dal.OrderDAO">
+  <resultMap id="BaseResultMap" type="com.herui.health.biz.dal.model.OrderDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="card_uuid" jdbcType="VARCHAR" property="cardUuid" />
+    <result column="package_uuid" jdbcType="VARCHAR" property="packageUuid" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="health_item_uuid" jdbcType="VARCHAR" property="healthItemUuid" />
+    <result column="supplier_item_code" jdbcType="VARCHAR" property="supplierItemCode" />
+    <result column="card_package_id" jdbcType="BIGINT" property="cardPackageId" />
+    <result column="package_type" jdbcType="TINYINT" property="packageType" />
+    <result column="hdate" jdbcType="DATE" property="hdate" />
+    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="marriage_status" jdbcType="TINYINT" property="marriageStatus" />
+    <result column="supplier_uuid" jdbcType="VARCHAR" property="supplierUuid" />
+    <result column="province" jdbcType="INTEGER" property="province" />
+    <result column="city" jdbcType="INTEGER" property="city" />
+    <result column="district" jdbcType="INTEGER" property="district" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, card_uuid, package_uuid, project_id, health_item_uuid, supplier_item_code, card_package_id, 
+    package_type, hdate, order_status, `name`, id_no, sex, marriage_status, supplier_uuid, 
+    province, city, district, remark, gmt_created, gmt_modified, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.herui.health.biz.dal.model.OrderDO">
+    insert into order (id, card_uuid, package_uuid, 
+      project_id, health_item_uuid, supplier_item_code, 
+      card_package_id, package_type, hdate, 
+      order_status, `name`, id_no, 
+      sex, marriage_status, supplier_uuid, 
+      province, city, district, 
+      remark, gmt_created, gmt_modified, 
+      is_delete)
+    values (#{id,jdbcType=BIGINT}, #{cardUuid,jdbcType=VARCHAR}, #{packageUuid,jdbcType=VARCHAR}, 
+      #{projectId,jdbcType=BIGINT}, #{healthItemUuid,jdbcType=VARCHAR}, #{supplierItemCode,jdbcType=VARCHAR}, 
+      #{cardPackageId,jdbcType=BIGINT}, #{packageType,jdbcType=TINYINT}, #{hdate,jdbcType=DATE}, 
+      #{orderStatus,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=TINYINT}, #{marriageStatus,jdbcType=TINYINT}, #{supplierUuid,jdbcType=VARCHAR}, 
+      #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{district,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.herui.health.biz.dal.model.OrderDO">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cardUuid != null">
+        card_uuid,
+      </if>
+      <if test="packageUuid != null">
+        package_uuid,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="healthItemUuid != null">
+        health_item_uuid,
+      </if>
+      <if test="supplierItemCode != null">
+        supplier_item_code,
+      </if>
+      <if test="cardPackageId != null">
+        card_package_id,
+      </if>
+      <if test="packageType != null">
+        package_type,
+      </if>
+      <if test="hdate != null">
+        hdate,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="idNo != null">
+        id_no,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status,
+      </if>
+      <if test="supplierUuid != null">
+        supplier_uuid,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cardUuid != null">
+        #{cardUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="packageUuid != null">
+        #{packageUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="healthItemUuid != null">
+        #{healthItemUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierItemCode != null">
+        #{supplierItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPackageId != null">
+        #{cardPackageId,jdbcType=BIGINT},
+      </if>
+      <if test="packageType != null">
+        #{packageType,jdbcType=TINYINT},
+      </if>
+      <if test="hdate != null">
+        #{hdate,jdbcType=DATE},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="marriageStatus != null">
+        #{marriageStatus,jdbcType=TINYINT},
+      </if>
+      <if test="supplierUuid != null">
+        #{supplierUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.herui.health.biz.dal.model.OrderDO">
+    update order
+    <set>
+      <if test="cardUuid != null">
+        card_uuid = #{cardUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="packageUuid != null">
+        package_uuid = #{packageUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="healthItemUuid != null">
+        health_item_uuid = #{healthItemUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierItemCode != null">
+        supplier_item_code = #{supplierItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPackageId != null">
+        card_package_id = #{cardPackageId,jdbcType=BIGINT},
+      </if>
+      <if test="packageType != null">
+        package_type = #{packageType,jdbcType=TINYINT},
+      </if>
+      <if test="hdate != null">
+        hdate = #{hdate,jdbcType=DATE},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status = #{marriageStatus,jdbcType=TINYINT},
+      </if>
+      <if test="supplierUuid != null">
+        supplier_uuid = #{supplierUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.herui.health.biz.dal.model.OrderDO">
+    update order
+    set card_uuid = #{cardUuid,jdbcType=VARCHAR},
+      package_uuid = #{packageUuid,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      health_item_uuid = #{healthItemUuid,jdbcType=VARCHAR},
+      supplier_item_code = #{supplierItemCode,jdbcType=VARCHAR},
+      card_package_id = #{cardPackageId,jdbcType=BIGINT},
+      package_type = #{packageType,jdbcType=TINYINT},
+      hdate = #{hdate,jdbcType=DATE},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      marriage_status = #{marriageStatus,jdbcType=TINYINT},
+      supplier_uuid = #{supplierUuid,jdbcType=VARCHAR},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      district = #{district,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

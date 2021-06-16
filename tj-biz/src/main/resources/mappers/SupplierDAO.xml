@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.herui.health.biz.dal.SupplierDAO">
+  <resultMap id="BaseResultMap" type="com.herui.health.biz.dal.model.SupplierDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="out_code" jdbcType="VARCHAR" property="outCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="province" jdbcType="INTEGER" property="province" />
+    <result column="city" jdbcType="INTEGER" property="city" />
+    <result column="district" jdbcType="INTEGER" property="district" />
+    <result column="point_x" jdbcType="DECIMAL" property="pointX" />
+    <result column="point_y" jdbcType="DECIMAL" property="pointY" />
+    <result column="wek_day_off" jdbcType="VARCHAR" property="wekDayOff" />
+    <result column="supplier_status" jdbcType="TINYINT" property="supplierStatus" />
+    <result column="technical_dates" jdbcType="VARCHAR" property="technicalDates" />
+    <result column="traffic_route" jdbcType="VARCHAR" property="trafficRoute" />
+    <result column="shop_hours" jdbcType="VARCHAR" property="shopHours" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="parent_uuid" jdbcType="VARCHAR" property="parentUuid" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, out_code, `name`, address, province, city, district, point_x, point_y, 
+    wek_day_off, supplier_status, technical_dates, traffic_route, shop_hours, sort, parent_uuid, 
+    gmt_created, gmt_modified, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from supplier
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.herui.health.biz.dal.model.SupplierDO">
+    insert into supplier (id, uuid, out_code, 
+      `name`, address, province, 
+      city, district, point_x, 
+      point_y, wek_day_off, supplier_status, 
+      technical_dates, traffic_route, shop_hours, 
+      sort, parent_uuid, gmt_created, 
+      gmt_modified, is_delete)
+    values (#{id,jdbcType=BIGINT}, #{uuid,jdbcType=VARCHAR}, #{outCode,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{province,jdbcType=INTEGER}, 
+      #{city,jdbcType=INTEGER}, #{district,jdbcType=INTEGER}, #{pointX,jdbcType=DECIMAL}, 
+      #{pointY,jdbcType=DECIMAL}, #{wekDayOff,jdbcType=VARCHAR}, #{supplierStatus,jdbcType=TINYINT}, 
+      #{technicalDates,jdbcType=VARCHAR}, #{trafficRoute,jdbcType=VARCHAR}, #{shopHours,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{parentUuid,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.herui.health.biz.dal.model.SupplierDO">
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="outCode != null">
+        out_code,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="pointX != null">
+        point_x,
+      </if>
+      <if test="pointY != null">
+        point_y,
+      </if>
+      <if test="wekDayOff != null">
+        wek_day_off,
+      </if>
+      <if test="supplierStatus != null">
+        supplier_status,
+      </if>
+      <if test="technicalDates != null">
+        technical_dates,
+      </if>
+      <if test="trafficRoute != null">
+        traffic_route,
+      </if>
+      <if test="shopHours != null">
+        shop_hours,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="parentUuid != null">
+        parent_uuid,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="outCode != null">
+        #{outCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=INTEGER},
+      </if>
+      <if test="pointX != null">
+        #{pointX,jdbcType=DECIMAL},
+      </if>
+      <if test="pointY != null">
+        #{pointY,jdbcType=DECIMAL},
+      </if>
+      <if test="wekDayOff != null">
+        #{wekDayOff,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierStatus != null">
+        #{supplierStatus,jdbcType=TINYINT},
+      </if>
+      <if test="technicalDates != null">
+        #{technicalDates,jdbcType=VARCHAR},
+      </if>
+      <if test="trafficRoute != null">
+        #{trafficRoute,jdbcType=VARCHAR},
+      </if>
+      <if test="shopHours != null">
+        #{shopHours,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="parentUuid != null">
+        #{parentUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.herui.health.biz.dal.model.SupplierDO">
+    update supplier
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="outCode != null">
+        out_code = #{outCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=INTEGER},
+      </if>
+      <if test="pointX != null">
+        point_x = #{pointX,jdbcType=DECIMAL},
+      </if>
+      <if test="pointY != null">
+        point_y = #{pointY,jdbcType=DECIMAL},
+      </if>
+      <if test="wekDayOff != null">
+        wek_day_off = #{wekDayOff,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierStatus != null">
+        supplier_status = #{supplierStatus,jdbcType=TINYINT},
+      </if>
+      <if test="technicalDates != null">
+        technical_dates = #{technicalDates,jdbcType=VARCHAR},
+      </if>
+      <if test="trafficRoute != null">
+        traffic_route = #{trafficRoute,jdbcType=VARCHAR},
+      </if>
+      <if test="shopHours != null">
+        shop_hours = #{shopHours,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="parentUuid != null">
+        parent_uuid = #{parentUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.herui.health.biz.dal.model.SupplierDO">
+    update supplier
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      out_code = #{outCode,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      district = #{district,jdbcType=INTEGER},
+      point_x = #{pointX,jdbcType=DECIMAL},
+      point_y = #{pointY,jdbcType=DECIMAL},
+      wek_day_off = #{wekDayOff,jdbcType=VARCHAR},
+      supplier_status = #{supplierStatus,jdbcType=TINYINT},
+      technical_dates = #{technicalDates,jdbcType=VARCHAR},
+      traffic_route = #{trafficRoute,jdbcType=VARCHAR},
+      shop_hours = #{shopHours,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      parent_uuid = #{parentUuid,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

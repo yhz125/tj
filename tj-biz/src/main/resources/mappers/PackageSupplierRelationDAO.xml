@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.herui.health.biz.dal.PackageSupplierRelationDAO">
+  <resultMap id="BaseResultMap" type="com.herui.health.biz.dal.model.PackageSupplierRelationDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="package_uuid" jdbcType="VARCHAR" property="packageUuid" />
+    <result column="supplier_uuid" jdbcType="VARCHAR" property="supplierUuid" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, package_uuid, supplier_uuid, gmt_created, gmt_modified, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from package_supplier_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from package_supplier_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.herui.health.biz.dal.model.PackageSupplierRelationDO">
+    insert into package_supplier_relation (id, package_uuid, supplier_uuid, 
+      gmt_created, gmt_modified, is_delete
+      )
+    values (#{id,jdbcType=BIGINT}, #{packageUuid,jdbcType=VARCHAR}, #{supplierUuid,jdbcType=VARCHAR}, 
+      #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.herui.health.biz.dal.model.PackageSupplierRelationDO">
+    insert into package_supplier_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="packageUuid != null">
+        package_uuid,
+      </if>
+      <if test="supplierUuid != null">
+        supplier_uuid,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="packageUuid != null">
+        #{packageUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierUuid != null">
+        #{supplierUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.herui.health.biz.dal.model.PackageSupplierRelationDO">
+    update package_supplier_relation
+    <set>
+      <if test="packageUuid != null">
+        package_uuid = #{packageUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierUuid != null">
+        supplier_uuid = #{supplierUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.herui.health.biz.dal.model.PackageSupplierRelationDO">
+    update package_supplier_relation
+    set package_uuid = #{packageUuid,jdbcType=VARCHAR},
+      supplier_uuid = #{supplierUuid,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
