@@ -7,6 +7,10 @@
  */
 package com.herui.health.biz.manager;
 
+import com.github.pagehelper.PageInfo;
+import com.herui.health.biz.dal.model.CardDO;
+import com.herui.health.biz.domain.query.CardQuery;
+import com.herui.health.biz.domain.query.PageQuery;
 import com.herui.health.biz.domain.request.BatchGenerateCardRequest;
 import com.herui.health.biz.domain.Result;
 
@@ -25,4 +29,8 @@ public interface CardManager {
      * @return
      */
     Result<Boolean> batchGenerateCard(BatchGenerateCardRequest request);
+
+    Result<PageInfo<CardDO>> queryCardByPage(PageQuery<CardQuery> query);
+
+
 }

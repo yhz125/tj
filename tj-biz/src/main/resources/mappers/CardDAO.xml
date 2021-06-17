@@ -26,6 +26,21 @@
     from card
     where card_no = #{cardNo,jdbcType=BIGINT} and is_delete=0
   </select>
+  <select id="selectByPage"   resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from card
+    <include refid="queryCondition"/>
+    order by id desc
+  </select>
+  <sql id="queryCondition">
+    <where>
+      and is_delete=0
+      <if test="cardNoStart!= null and cardNoEnd!=null">and card_no between #{cardNoStart} and #{cardNoEnd}</if>
+      <if test="cardStatus!=null">and card_status=#{cardStatus}</if>
+    </where>
+  </sql>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from card
     where id = #{id,jdbcType=BIGINT}

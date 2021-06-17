@@ -8,15 +8,20 @@
 package com.herui.health.biz.manager.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.herui.health.biz.dal.CardDAO;
 import com.herui.health.biz.dal.model.CardDO;
 import com.herui.health.biz.domain.HttpStatusEnum;
+import com.herui.health.biz.domain.query.CardQuery;
+import com.herui.health.biz.domain.query.PageQuery;
 import com.herui.health.biz.domain.request.BatchGenerateCardRequest;
 import com.herui.health.biz.domain.Result;
 import com.herui.health.biz.manager.CardManager;
 import com.herui.health.biz.utils.RandomUtils;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -94,7 +99,12 @@ public class CardManagerImpl implements CardManager {
         return Result.success();
     }
 
-
-
+    @Override
+    public Result<PageInfo<CardDO>> queryCardByPage(PageQuery<CardQuery> query) {
+        PageHelper.startPage(query.getPageNo(),query.getPageSize());
+        List<CardDO> list = cardDAO.selectByPage(query.getRequest());
+        PageInfo<CardDO> pageInfo = new PageInfo<CardDO>(list);
+        return Result.success(pageInfo);
+    }
 
 }
